@@ -1,0 +1,75 @@
+{
+  "accuracy": 0.9591924109333358,
+  "classification_report": {
+    "benign": {
+      "precision": 0.9706253424919395,
+      "recall": 0.9845079980610761,
+      "f1-score": 0.9775173825574418,
+      "support": 154725.0
+    },
+    "defacement": {
+      "precision": 0.9332765322967144,
+      "recall": 0.906157902900574,
+      "f1-score": 0.919517313746065,
+      "support": 19341.0
+    },
+    "malware": {
+      "precision": 0.9640009113693324,
+      "recall": 0.8922395613665121,
+      "f1-score": 0.9267331069981382,
+      "support": 4742.0
+    },
+    "phishing": {
+      "precision": 0.9113495607086274,
+      "recall": 0.870657034743722,
+      "f1-score": 0.8905386861827522,
+      "support": 29070.0
+    },
+    "accuracy": 0.9591924109333358,
+    "macro avg": {
+      "precision": 0.9448130867166534,
+      "recall": 0.913390624267971,
+      "f1-score": 0.9285766223710993,
+      "support": 207878.0
+    },
+    "weighted avg": {
+      "precision": 0.9587100683079945,
+      "recall": 0.9591924109333358,
+      "f1-score": 0.9587993408733998,
+      "support": 207878.0
+    }
+  },
+  "class_distribution": {
+    "benign": 773848,
+    "phishing": 145494,
+    "defacement": 96399,
+    "malware": 23645
+  },
+  "feature_names": [
+    "url_length",
+    "num_digits",
+    "num_special_chars",
+    "num_subdomains",
+    "num_slashes",
+    "num_params",
+    "num_fragments",
+    "url_entropy",
+    "num_hyphens",
+    "double_slash_in_path",
+    "domain_length",
+    "sld_length",
+    "tld_length",
+    "bad_tld_flag",
+    "has_ip",
+    "numeric_domain",
+    "domain_tokens",
+    "path_length",
+    "num_directories",
+    "query_length",
+    "has_hex_encoding",
+    "repeated_chars",
+    "has_suspicious_words",
+    "brand_mimic",
+    "has_unicode_or_punycode"
+  ]
+}

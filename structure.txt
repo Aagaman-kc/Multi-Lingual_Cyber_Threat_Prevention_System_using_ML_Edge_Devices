@@ -1,0 +1,52 @@
+├── ./
+│   ├── CEAS_08.csv
+│   ├── main_note.ipynb
+│   ├── README.md
+│   ├── requirements.txt
+│   ├── structure.txt
+│   ├── structure_check.py
+│   ├── Application_Attack_Detection/
+│   │   ├── Application_Attack_Detection.ipynb
+│   │   ├── clean_payloads.csv
+│   │   ├── Application_Attack_Detection/
+│   ├── Deep_Packet_Inspection_Model/
+│   │   ├── categorical_cols.pkl
+│   │   ├── cat_imputer.pkl
+│   │   ├── dpi.ipynb
+│   │   ├── dpi_rf_pipeline.pkl
+│   │   ├── dpi_xgboost_model.pkl
+│   │   ├── label_encoders.pkl
+│   │   ├── note.ipynb
+│   │   ├── numeric_cols.pkl
+│   │   ├── num_imputer.pkl
+│   │   ├── onehot_encoder.pkl
+│   │   ├── scaler.pkl
+│   │   ├── UNSW_NB15_testing-set.csv
+│   │   ├── UNSW_NB15_training-set.csv
+│   ├── Malicious URL Detection Model/
+│   │   ├── feature_columns.pkl
+│   │   ├── label_encoder.pkl
+│   │   ├── main.ipynb
+│   │   ├── malicious-url-detection-ml-model.ipynb
+│   │   ├── note.ipynb
+│   │   ├── predict_URL.py
+│   │   ├── rf_url_model.pkl
+│   │   ├── train_model.py
+│   │   ├── URLsdata.csv
+│   │   ├── plots/
+│   ├── Phishing_Email_Detection/
+│   │   ├── combined_phishing_dataset_15000.csv
+│   │   ├── multilingual_phishing_detection.ipynb
+│   │   ├── note.ipynb
+│   │   ├── Phishing detection.ipynb
+│   │   ├── phising_detection.ipynb
+│   │   ├── figures/
+│   │   ├── final_multilingual_model/
+│   │   ├── results/
+│   │   ├── results_weighted/
+│   ├── torch_gpu_env/
+│   │   ├── etc/
+│   │   ├── Include/
+│   │   ├── Lib/
+│   │   ├── Scripts/
+│   │   ├── share/

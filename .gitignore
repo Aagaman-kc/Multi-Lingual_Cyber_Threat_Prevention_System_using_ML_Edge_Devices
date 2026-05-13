@@ -1,0 +1,36 @@
+# Virtual envs
+venv/
+myenv/
+torch_gpu_env/
+env/
+
+# Cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Datasets
+*.csv
+*.jsonl
+
+# ML models
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.pth
+*.onnx
+*.safetensors
+
+# Images/plots
+plots/
+figures/
+
+# Editors
+.vscode/
+.idea/
+
+# Checkpoints
+checkpoint*
