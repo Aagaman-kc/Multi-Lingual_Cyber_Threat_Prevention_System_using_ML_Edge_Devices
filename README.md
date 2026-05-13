@@ -42,7 +42,7 @@ This repository contains the core ML models for a multi-layer cyber threat detec
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
-│                     RASPBERRY PI 4 (8GB)                   │
+│                     RASPBERRY PI 5 (4GB)                   │
 │                                                             │
 │  ┌───────────────────────────────────────────────────────┐  │
 │  │              LAYER 1: CAPTURE LAYER                  │  │
