@@ -1,0 +1,194 @@
+├── ./
+│   ├── CEAS_08.csv
+│   ├── README.md
+│   ├── figure.ipynb
+│   ├── main_note.ipynb
+│   ├── requirements.txt
+│   ├── structure.txt
+│   ├── structure_check.py
+│   ├── Application_Attack_Detection/
+│   │   ├── Application_Attack_Detection.ipynb
+│   │   ├── clean_payloads.csv
+│   │   ├── Application_Attack_Detection/
+│   │   │   ├── models/
+│   │   │   │   ├── label_encoder.pkl
+│   │   │   │   ├── tfidf_vectorizer.pkl
+│   │   │   │   ├── web_attack_rf.pkl
+│   ├── Deep_Packet_Inspection_Model/
+│   │   ├── UNSW_NB15_testing-set.csv
+│   │   ├── UNSW_NB15_training-set.csv
+│   │   ├── cat_imputer.pkl
+│   │   ├── categorical_cols.pkl
+│   │   ├── dpi.ipynb
+│   │   ├── dpi_rf_pipeline.pkl
+│   │   ├── dpi_xgboost_model.pkl
+│   │   ├── label_encoders.pkl
+│   │   ├── note.ipynb
+│   │   ├── num_imputer.pkl
+│   │   ├── numeric_cols.pkl
+│   │   ├── onehot_encoder.pkl
+│   │   ├── scaler.pkl
+│   ├── Demo/
+│   ├── Docs/
+│   │   ├── model.md
+│   ├── email_phishing/
+│   │   ├── Model_training.ipynb
+│   │   ├── final_phishing_dataset.csv
+│   │   ├── model_results.txt
+│   │   ├── phishing_model.pkl
+│   │   ├── data_collection/
+│   │   │   ├── Phishing_Email.csv
+│   │   │   ├── data-augmented.csv
+│   │   │   ├── merge_all_datasets.py
+│   │   │   ├── nepali_phishing_dataset.csv
+│   │   │   ├── nepali_phishing_dataset_1000.csv
+│   │   │   ├── nepali_phishing_dataset_3.csv
+│   │   ├── figures/
+│   │   │   🖼 confusion_matrix.png
+│   │   │   🖼 label_distribution.png
+│   │   │   🖼 language_distribution.png
+│   │   │   🖼 roc_curve.png
+│   │   │   🖼 text_length_dist.png
+│   │   │   🖼 training_curves.png
+│   ├── Images/
+│   │   🖼 Analytics.png
+│   │   🖼 Command_injection.png
+│   │   🖼 Dashboard.png
+│   │   🖼 Dos_attack.png
+│   │   🖼 Packet_Capture.png
+│   │   🖼 Phishing_Email.png
+│   │   🖼 Phishing_URL.png
+│   │   🖼 SQL_injection.png
+│   │   🖼 Traversal.png
+│   │   🖼 XSS.png
+│   ├── laptop_server/
+│   │   ├── requirements.txt
+│   │   ├── run_server.py
+│   │   ├── data_layer/
+│   │   │   ├── database/
+│   │   │   │   ├── db_manager.py
+│   │   ├── presentation_layer/
+│   │   │   ├── socket_manager.py
+│   │   │   ├── static/
+│   │   │   ├── templates/
+│   ├── Malicious URL Detection Model/
+│   │   ├── URLsdata.csv
+│   │   ├── feature_columns.pkl
+│   │   ├── label_encoder.pkl
+│   │   ├── main.ipynb
+│   │   ├── malicious-url-detection-ml-model.ipynb
+│   │   ├── note.ipynb
+│   │   ├── predict_URL.py
+│   │   ├── rf_url_model.pkl
+│   │   ├── train_model.py
+│   │   ├── plots/
+│   │   │   🖼 class_distribution.png
+│   │   │   🖼 confusion_matrix_K-Nearest_Neighbors.png
+│   │   │   🖼 confusion_matrix_Random_Forest.png
+│   │   │   🖼 feature_correlation_heatmap.png
+│   │   │   🖼 hist_num_digits.png
+│   │   │   🖼 hist_num_special_chars.png
+│   │   │   🖼 hist_num_subdomains.png
+│   │   │   🖼 hist_url_entropy.png
+│   │   │   🖼 hist_url_length.png
+│   │   │   🖼 model_accuracy_comparison.png
+│   ├── Phishing_Email_Detection/
+│   │   🖼 architecture.png
+│   │   🖼 citation_for_dataset.png
+│   │   ├── combined_phishing_dataset_15000.csv
+│   │   ├── expanded_phishing_dataset_100k.csv
+│   │   ├── multilingual_phishing_detection.ipynb
+│   │   ├── nre_main_phising_email_safe.ipynb
+│   │   ├── phishing_xgboost_100k.pkl
+│   │   ├── phising_detection.ipynb
+│   │   ├── figures_old/
+│   │   │   🖼 confusion_matrix.png
+│   │   │   🖼 label_distribution.png
+│   │   │   🖼 language_distribution.png
+│   │   │   🖼 training_curves.png
+│   │   ├── final_multilingual_model_old/
+│   ├── Pi_prevention/
+│   │   ├── requirements.txt
+│   │   ├── run_remote.py
+│   │   ├── setup.py
+│   │   ├── capture_layer/
+│   │   │   ├── dns_extractor.py
+│   │   │   ├── flow_metadata.py
+│   │   │   ├── http_extractor.py
+│   │   │   ├── packet_capture.py
+│   │   │   ├── smtp_extractor.py
+│   │   ├── config/
+│   │   ├── data_layer/
+│   │   │   ├── database/
+│   │   │   │   ├── db_manager.py
+│   │   ├── detection_engine/
+│   │   │   ├── prevention_engine.py
+│   │   │   ├── scoring_engine.py
+│   │   │   ├── app_layer_detector/
+│   │   │   │   ├── payload_analyzer.py
+│   │   │   │   ├── regex_rules.py
+│   │   │   ├── dpi_model/
+│   │   │   │   ├── anomaly_detector.py
+│   │   │   │   ├── feature_extractor.py
+│   │   │   ├── email_phishing/
+│   │   │   │   ├── email_classifier.py
+│   │   │   │   ├── email_extractor.py
+│   │   │   ├── url_scanner/
+│   │   │   │   ├── url_classifier.py
+│   │   │   │   ├── url_extractor.py
+│   │   ├── models/
+│   │   │   ├── README.md
+│   │   │   ├── main.py
+│   │   │   ├── requirements.txt
+│   │   │   ├── structure.txt
+│   │   │   ├── structure_check.py
+│   ├── readme_image/
+│   │   🖼 app_confusion_matrix.png
+│   │   🖼 arch.jpg
+│   │   🖼 dataset_distribution.png
+│   │   🖼 dpi_confusion_matrix.png
+│   │   🖼 email_confusion_matrix.png
+│   │   🖼 model_performance_comparison.png
+│   │   🖼 reallife.jpg
+│   │   🖼 url_confusion_matrix.png
+│   │   🖼 web_dashboard.png
+│   ├── server/
+│   │   ├── vulnerable_http_server.py
+│   ├── Test_Attacks/
+│   │   ├── attack_pi.py
+│   │   ├── cmdi.py
+│   │   ├── dos_flood.py
+│   │   ├── dos_working.py
+│   │   ├── dpi_scan.py
+│   │   ├── phish_email.py
+│   │   ├── sql.py
+│   │   ├── ssti.py
+│   │   ├── traversal.py
+│   │   ├── url.py
+│   │   ├── xss.py
+│   ├── torch_gpu_env/
+│   │   ├── etc/
+│   │   │   ├── jupyter/
+│   │   ├── Include/
+│   │   ├── Lib/
+│   │   │   ├── site-packages/
+│   │   │   │   ├── decorator.py
+│   │   │   │   ├── ipykernel_launcher.py
+│   │   │   │   ├── ipython_pygments_lexers.py
+│   │   │   │   ├── isympy.py
+│   │   │   │   ├── jsonpointer.py
+│   │   │   │   ├── jupyter.py
+│   │   │   │   ├── nest_asyncio.py
+│   │   │   │   ├── pandocfilters.py
+│   │   │   │   ├── pylab.py
+│   │   │   │   ├── rfc3339_validator.py
+│   │   │   │   ├── rfc3986_validator.py
+│   │   │   │   ├── six.py
+│   │   │   │   ├── threadpoolctl.py
+│   │   │   │   ├── typing_extensions.py
+│   │   ├── Scripts/
+│   │   ├── share/
+│   │   │   ├── applications/
+│   │   │   ├── icons/
+│   │   │   ├── jupyter/
+│   │   │   ├── man/

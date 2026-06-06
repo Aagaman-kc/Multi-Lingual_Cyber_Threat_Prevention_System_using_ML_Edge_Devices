@@ -1,0 +1,34 @@
+├── ./
+│   ├── README.md
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── structure.txt
+│   ├── structure_check.py
+│   ├── capture/
+│   │   ├── flow_aggregator.py
+│   │   ├── http_extractor.py
+│   │   ├── packet_capture.py
+│   ├── dashboard/
+│   │   ├── app.py
+│   │   ├── templates/
+│   ├── database/
+│   │   ├── db_manager.py
+│   ├── detection/
+│   │   ├── app_attack_detector.py
+│   │   ├── dpi_detector.py
+│   │   ├── email_detector.py
+│   │   ├── url_detector.py
+│   ├── models/
+│   │   ├── app_attack/
+│   │   │   ├── label_encoder.pkl
+│   │   │   ├── tfidf_vectorizer.pkl
+│   │   │   ├── web_attack_rf.pkl
+│   │   ├── dpi/
+│   │   │   ├── dpi_rf_pipeline.pkl
+│   │   ├── email/
+│   │   │   ├── final_multilingual_model/
+│   │   ├── url/
+│   │   │   ├── feature_columns.pkl
+│   │   │   ├── label_encoder.pkl
+│   │   │   ├── rf_url_model.pkl
+│   ├── utils/

@@ -1,0 +1,259 @@
+# ============================================================================
+# CyberShield Multi-Layer Cyber Threat Detection System
+# Main Configuration File
+# ============================================================================
+
+system:
+  name: "CyberShield"
+  version: "1.0.0"
+  description: "Multi-Layer Cyber Threat Detection System for Raspberry Pi 5"
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_file: "logs/cybershield.log"
+  max_log_size_mb: 50
+  log_backup_count: 5
+
+# ============================================================================
+# NETWORK CAPTURE SETTINGS
+# ============================================================================
+capture:
+  # Network interface to monitor
+  # Raspberry Pi: 'eth0' for ethernet, 'wlan0' for WiFi
+  # Use 'any' to capture on all interfaces
+  interface: "eth0"
+  
+  # Promiscuous mode - captures all packets on network
+  promiscuous: true
+  
+  # Packet buffer size (larger = more memory but fewer drops)
+  buffer_size: 10000
+  
+  # Snapshot length (bytes per packet, 0 = unlimited)
+  snaplen: 65535
+  
+  # BPF filter (Berkeley Packet Filter)
+  # Leave empty to capture all, or specify filter
+  # Example: "not port 22" to exclude SSH
+  bpf_filter: ""
+  
+  # Timeout for idle flows (seconds)
+  flow_timeout: 60
+  
+  # Maximum flows to track simultaneously
+  max_flows: 5000
+
+# ============================================================================
+# DETECTION ENGINE SETTINGS
+# ============================================================================
+detection:
+  # URL Scanner
+  url_scanner:
+    enabled: true
+    model_path: "models/url_rf_model.pkl"
+    feature_columns_path: "models/url_feature_columns.pkl"
+    label_encoder_path: "models/url_label_encoder.pkl"
+    confidence_threshold: 0.7
+    # Domains to whitelist (never scan)
+    whitelist_domains:
+      - "google.com"
+      - "microsoft.com"
+      - "apple.com"
+      - "amazon.com"
+      - "github.com"
+  
+  # Email Phishing Detector
+  email_detector:
+    enabled: true
+    model_path: "models/mbert_phishing/final_multilingual_model/"
+    confidence_threshold: 0.75
+    max_text_length: 512
+    # Email addresses/domains to whitelist
+    whitelist_senders: []
+  
+  # Application Layer Attack Detector
+  app_attack_detector:
+    enabled: true
+    model_path: "models/web_attack_rf.pkl"
+    vectorizer_path: "models/tfidf_vectorizer.pkl"
+    label_encoder_path: "models/app_label_encoder.pkl"
+    confidence_threshold: 0.7
+    # Attack types to detect
+    detect_types:
+      - "sql_injection"
+      - "xss"
+      - "command_injection"
+      - "ssti"
+      - "path_traversal"
+  
+  # DPI Flow-Based Anomaly Detector
+  dpi_detector:
+    enabled: true
+    model_path: "models/dpi_rf_pipeline.pkl"
+    confidence_threshold: 0.65
+    # Anomaly types
+    detect_types:
+      - "c2_communication"
+      - "beaconing"
+      - "port_scanning"
+      - "data_exfiltration"
+      - "dos_attack"
+
+# ============================================================================
+# SCORING ENGINE SETTINGS
+# ============================================================================
+scoring:
+  # Module weights (must sum to 1.0)
+  module_weights:
+    url: 0.25
+    email: 0.30
+    app_attack: 0.30
+    dpi: 0.15
+  
+  # Severity thresholds
+  thresholds:
+    critical: 0.90
+    high: 0.75
+    medium: 0.60
+    low: 0.40
+  
+  # Attack severity multipliers
+  attack_severity:
+    critical:
+      - "c2_communication"
+      - "data_exfiltration"
+      - "ransomware"
+    high:
+      - "phishing"
+      - "sql_injection"
+      - "command_injection"
+      - "malware"
+      - "dos_attack"
+    medium:
+      - "xss"
+      - "ssti"
+      - "path_traversal"
+      - "beaconing"
+      - "port_scanning"
+    low:
+      - "suspicious"
+      - "anomaly"
+
+# ============================================================================
+# PREVENTION ENGINE SETTINGS
+# ============================================================================
+prevention:
+  # Enable automatic blocking
+  auto_block: true
+  
+  # Minimum severity to auto-block
+  auto_block_threshold: "high"  # critical, high, medium, low
+  
+  # Block durations (hours, null = permanent)
+  block_durations:
+    critical: null    # Permanent
+    high: 24          # 24 hours
+    medium: 6         # 6 hours
+    low: 1            # 1 hour
+  
+  # Maximum blocked IPs (prevent memory issues)
+  max_blocked_ips: 1000
+  
+  # Cleanup interval for expired blocks (seconds)
+  cleanup_interval: 60
+  
+  # Simulation mode (for Windows/testing)
+  simulation_mode: false
+  
+  # iptables chain to use
+  iptables_chain: "INPUT"
+
+# ============================================================================
+# DATABASE SETTINGS
+# ============================================================================
+database:
+  path: "threats.db"
+  # Auto-cleanup old alerts (days, 0 = never)
+  retention_days: 30
+  # Maximum database size (MB, 0 = unlimited)
+  max_size_mb: 100
+
+# ============================================================================
+# DASHBOARD SETTINGS
+# ============================================================================
+dashboard:
+  host: "0.0.0.0"
+  port: 5000
+  debug: false
+  secret_key: "change-this-to-random-string"
+  # Maximum alerts to keep in memory
+  max_alerts_memory: 1000
+  # Refresh interval for stats (seconds)
+  refresh_interval: 30
+
+# ============================================================================
+# RASPBERRY PI OPTIMIZATION
+# ============================================================================
+raspberry_pi:
+  # Model-specific settings
+  model: "Raspberry Pi 5"
+  ram: "4GB"
+  
+  # Performance optimization
+  cpu_governor: "ondemand"  # conservative, ondemand, performance
+  gpu_mem: 64  # MB allocated to GPU (less = more for detection)
+  
+  # Temperature monitoring
+  temp_warning_threshold: 70  # Celsius
+  temp_critical_threshold: 80  # Celsius
+  
+  # Memory limits
+  max_memory_percent: 80  # Kill if exceeds this
+  
+  # Swap usage
+  enable_swap: true
+  swap_size_mb: 2048
+
+# ============================================================================
+# NOTIFICATION SETTINGS
+# ============================================================================
+notifications:
+  # Enable browser notifications (via dashboard)
+  browser_notifications: true
+  
+  # Enable sound alerts
+  sound_alerts: true
+  
+  # Email notifications (for critical alerts)
+  email:
+    enabled: false
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    sender: "alert@cybershield.local"
+    recipients: []
+  
+  # Telegram notifications
+  telegram:
+    enabled: false
+    bot_token: ""
+    chat_id: ""
+
+# ============================================================================
+# ADVANCED SETTINGS
+# ============================================================================
+advanced:
+  # Thread pool size for parallel processing
+  thread_pool_size: 4
+  
+  # Queue sizes
+  packet_queue_size: 10000
+  alert_queue_size: 1000
+  
+  # Enable packet capture to PCAP file
+  save_pcap: false
+  pcap_directory: "captures/"
+  pcap_rotation_size_mb: 100
+  
+  # Enable anomaly learning (update baselines)
+  adaptive_learning: false
+  
+  # Custom iptables rules file
+  custom_firewall_rules: "config/firewall_rules.yaml"

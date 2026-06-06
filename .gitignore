@@ -4,6 +4,11 @@ myenv/
 torch_gpu_env/
 env/
 
+.env
+env
+/.env
+env/
+
 # Cache
 __pycache__/
 *.pyc

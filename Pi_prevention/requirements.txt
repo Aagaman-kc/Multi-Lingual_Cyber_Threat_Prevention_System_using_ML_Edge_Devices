@@ -1,0 +1,16 @@
+# Core ML Libraries
+scikit-learn
+joblib
+pandas
+numpy
+imbalanced-learn
+xgboost
+
+# Deep Learning for Email Detection
+transformers
+tokenizers
+
+# Network Capture
+scapy
+requests
+

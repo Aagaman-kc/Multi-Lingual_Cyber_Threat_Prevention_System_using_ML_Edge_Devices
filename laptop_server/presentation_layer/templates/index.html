@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CyberShield</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="app" id="mainView">
+        <header>
+            <div class="logo">🛡️ CyberShield</div>
+            <div class="header-right">
+                <button class="btn-icon" onclick="showAnalytics()">📊</button>
+                <span class="status-dot" id="statusDot"></span>
+                <span id="uptime">00:00</span>
+            </div>
+        </header>
+
+        <div class="stats-row">
+            <div class="stat-box"><div class="stat-num" id="totalThreats">0</div><div class="stat-label">Threats</div></div>
+            <div class="stat-box blocked"><div class="stat-num" id="totalBlocked">0</div><div class="stat-label">Blocked</div></div>
+            <div class="stat-box"><div class="stat-num" id="activeBlocks">0</div><div class="stat-label">Active</div></div>
+            <div class="stat-box"><div class="stat-num" id="scannedCount">0</div><div class="stat-label">Scanned</div></div>
+        </div>
+
+        <div class="modules-row">
+            <div class="module-chip active" data-filter="all" onclick="filterAlerts('all', this)">📋 All</div>
+            <div class="module-chip" data-filter="url" onclick="filterAlerts('url', this)">🔗 URL</div>
+            <div class="module-chip" data-filter="email" onclick="filterAlerts('email', this)">📧 Email</div>
+            <div class="module-chip" data-filter="app_attack" onclick="filterAlerts('app_attack', this)">💻 App</div>
+            <div class="module-chip" data-filter="dpi" onclick="filterAlerts('dpi', this)">📊 DPI</div>
+        </div>
+
+        <div class="date-filter">
+            <select id="dateRange" onchange="loadAlertsByDate()">
+                <option value="1">Last 1 hour</option>
+                <option value="6">Last 6 hours</option>
+                <option value="24" selected>Last 24 hours</option>
+                <option value="72">Last 3 days</option>
+                <option value="168">Last 7 days</option>
+                <option value="all">All time</option>
+            </select>
+            <span class="alert-count" id="alertCount">0 alerts</span>
+        </div>
+
+        <div class="section-title">Live Threats <span class="filter-badge" id="filterBadge">All</span></div>
+        <div class="alert-list" id="alertList">
+            <div class="empty-state">Loading alerts...</div>
+        </div>
+        <button class="load-more" id="loadMoreBtn" onclick="loadMoreAlerts()" style="display:none;">Load More</button>
+    </div>
+
+    <div class="app" id="analyticsView" style="display:none;">
+        <header>
+            <div class="logo">📊 Analytics</div>
+            <button class="btn-back" onclick="showMainView()">← Back</button>
+        </header>
+        <div class="date-filter">
+            <select id="chartRange" onchange="loadChartData()">
+                <option value="24">Last 24 hours</option>
+                <option value="72">Last 3 days</option>
+                <option value="168" selected>Last 7 days</option>
+            </select>
+        </div>
+        <div class="chart-container"><canvas id="threatChart"></canvas></div>
+        <div class="chart-container"><canvas id="moduleChart"></canvas></div>
+        <div class="chart-container"><canvas id="typeChart"></canvas></div>
+        <div class="analytics-summary" id="analyticsSummary"></div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span id="modalTitle">Threat Details</span>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

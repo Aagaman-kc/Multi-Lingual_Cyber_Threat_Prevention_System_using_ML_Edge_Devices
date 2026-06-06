@@ -1,0 +1,10 @@
+# First, find what's blocked
+sudo iptables -L INPUT -n --line-numbers
+
+# Unblock your laptop IP (replace with your actual IP from ipconfig)
+sudo iptables -D INPUT -s 10.42.0.133 -j DROP
+sudo iptables -D FORWARD -s 10.42.0.133 -j DROP
+
+# Flush ALL blocks (if you want to start fresh)
+sudo iptables -F
+sudo iptables -F FORWARD

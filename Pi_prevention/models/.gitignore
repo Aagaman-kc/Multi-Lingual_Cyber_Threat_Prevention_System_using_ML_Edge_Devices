@@ -1,0 +1,50 @@
+# Virtual environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+threats.db
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter notebooks backup
+.ipynb_checkpoints/
+
+# Model files (optional - uncomment if you want to ignore large models)
+# *.pkl
+# models/email/final_multilingual_model/
+
+# But if models are needed for deployment, you may want to include them.
+# For GitHub, if models are large, consider using Git LFS or a separate storage.
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Flask/SocketIO
+instance/
+.webassets-cache
+
+# Output directories
+output/
+results/

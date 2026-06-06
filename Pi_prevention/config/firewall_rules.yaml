@@ -1,0 +1,100 @@
+# ============================================================================
+# CyberShield Firewall Rules
+# Applied at startup in addition to dynamic blocking
+# ============================================================================
+
+# Default policies
+default_policies:
+  input: "DROP"      # Drop all incoming by default
+  forward: "ACCEPT"  # Accept forwarding (gateway mode)
+  output: "ACCEPT"   # Accept outgoing
+
+# Allow rules (processed before block rules)
+allow_rules:
+  # Allow loopback
+  - interface: "lo"
+    action: "ACCEPT"
+    
+  # Allow established connections
+  - match: "conntrack"
+    state: "ESTABLISHED,RELATED"
+    action: "ACCEPT"
+  
+  # Allow SSH from local network
+  - protocol: "tcp"
+    port: 22
+    source: "192.168.1.0/24"
+    action: "ACCEPT"
+  
+  # Allow dashboard access from local network
+  - protocol: "tcp"
+    port: 5000
+    source: "192.168.1.0/24"
+    action: "ACCEPT"
+  
+  # Allow DNS
+  - protocol: "udp"
+    port: 53
+    action: "ACCEPT"
+  
+  # Allow DHCP
+  - protocol: "udp"
+    port: "67:68"
+    action: "ACCEPT"
+
+# Pre-blocked IPs (always blocked)
+permanent_blocks:
+  # Known malicious IPs (examples - add your own)
+  - ip: "185.130.5.253"
+    reason: "Known C2 server"
+  
+  # Block entire ranges
+  - subnet: "103.224.182.0/24"
+    reason: "Known spam network"
+
+# Block by country (requires geoip)
+geoip_blocks:
+  enabled: false
+  countries: []
+
+# Rate limiting rules
+rate_limiting:
+  # Limit SSH attempts
+  - protocol: "tcp"
+    port: 22
+    max_connections: 5
+    timeframe_seconds: 60
+    action: "DROP"
+  
+  # Limit HTTP requests
+  - protocol: "tcp"
+    port: 80
+    max_connections: 100
+    timeframe_seconds: 10
+    action: "DROP"
+
+# Port knocking (optional)
+port_knocking:
+  enabled: false
+  sequence: [7000, 8000, 9000]
+  timeout_seconds: 10
+  open_port: 22
+
+# Logging
+logging:
+  # Log dropped packets
+  log_dropped: true
+  # Log accepted packets (verbose - disable for performance)
+  log_accepted: false
+  # Log prefix for iptables
+  prefix: "CyberShield: "
+
+# NAT/Forwarding (for gateway mode)
+nat:
+  enabled: false
+  # Enable IP forwarding
+  ip_forwarding: true
+  # MASQUERADE for internet sharing
+  masquerade: true
+  external_interface: "eth0"
+  internal_interface: "wlan0"
